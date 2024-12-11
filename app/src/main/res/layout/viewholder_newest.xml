@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/newest_background"
+    android:elevation="4dp">
+
+<!-- maxLines: số dòng tối đa, ellipsize Thêm dấu "..." ở cuối văn bản khi nội dung bị cắt.-->
+    <TextView
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:id="@+id/gameNameNewest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="God of war"
+        android:textAlignment="center"
+        android:textColor="@color/main_color"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.281"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picNewest" />
+
+    <ImageView
+        android:id="@+id/picNewest"
+        android:layout_width="240dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="-15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/category1" />
+
+    <TextView
+        android:id="@+id/priceGameNewest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.0"
+        android:textAlignment="center"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/picNewest"
+        app:layout_constraintHorizontal_bias="0.739"
+        app:layout_constraintStart_toStartOf="@+id/picNewest"
+        app:layout_constraintTop_toBottomOf="@+id/gameNameNewest"
+        tools:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/addBtnNewest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_add_background"
+        android:paddingStart="14dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="3dp"
+        android:text="+ Add"
+        android:textColor="@color/main_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/picNewest"
+        app:layout_constraintStart_toStartOf="@+id/picNewest"
+        app:layout_constraintTop_toBottomOf="@+id/priceGameNewest" />
+</androidx.constraintlayout.widget.ConstraintLayout>
