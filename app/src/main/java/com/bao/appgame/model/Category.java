@@ -15,7 +15,6 @@ public class Category {
         return categoryId;
     }
 
-
     public String getCategoryName() {
         return categoryName;
     }

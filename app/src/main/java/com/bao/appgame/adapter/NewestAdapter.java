@@ -1,6 +1,7 @@
 package com.bao.appgame.adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,19 +10,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bao.appgame.R;
+import com.bao.appgame.activity.GameDetailActivity;
 import com.bao.appgame.model.Game;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewestAdapter extends RecyclerView.Adapter<NewestAdapter.ViewHolder> {
-    ArrayList<Game> newestGame;
+    List<Game> newestGame;
 
     // khởi tạo với data được truyền vào
-    public NewestAdapter(ArrayList<Game> newestGame) {
+    public NewestAdapter(List<Game> newestGame) {
         this.newestGame = newestGame;
     }
 
@@ -41,27 +46,31 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.gameName.setText(newestGame.get(position).getGameName());
-        holder.gamePrice.setText(String.valueOf(newestGame.get(position).getPrice()));
+        holder.gamePrice.setText(String.valueOf(newestGame.get(position).getGamePrice()).replace(".0", " Đ"));
 
-        // getIdentifier(): Hàm này dùng để tìm ID của tài nguyên (resource) dựa vào tên, loại tài nguyên, và package của ứng dụng.
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier
-                (newestGame.get(position).getGameImg(), "drawable", holder.itemView.getContext().getPackageName());
+        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
+        String imageUrl = baseUrl + newestGame.get(position).getGameImg();
 
-        // Sử dụng Glide để tải và hiển thị hình ảnh
+
         Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // Bộ nhớ đệm cho ảnh
+                .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải (thay bằng ảnh của bạn)
                 .into(holder.gameImg);
 
-        // add btn
-//        holder.addBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(holder.itemView.getContext(),
-//                        ShowDetailActivity.class);
-//                intent.putExtra("object", newestGame.get(position));
-//                holder.itemView.getContext().startActivity(intent);
-//            }
-//        });
+//      add btn
+        holder.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // chuyền từ màn hình chứa recyclerView này sang GameDetailActivity
+                Intent intent = new Intent(holder.itemView.getContext(),
+                        GameDetailActivity.class);
+
+                // Gửi dữ liệu (đảm bảo Game implements Serializable)
+                intent.putExtra("game_object", newestGame.get(position));
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
     // kích thước của recycleView

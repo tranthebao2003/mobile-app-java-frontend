@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -12,17 +13,23 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bao.appgame.R;
+import com.bao.appgame.activity.HomeActivity;
 import com.bao.appgame.model.Category;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
-    ArrayList<Category> categoryList;
+    private List<Category> categoryList;
+
+    // Lưu giữ tham chiếu tới CategoryClickListener được truyền từ Activity
+    private HomeActivity.CategoryClickListener categoryClickListener;
 
     // khởi tạo với data được truyền vào
-    public CategoryAdapter(ArrayList<Category> categoryList) {
+    public CategoryAdapter(List<Category> categoryList, HomeActivity.CategoryClickListener categoryClickListener) {
         this.categoryList = categoryList;
+        this.categoryClickListener = categoryClickListener;
     }
 
     // method trả về ViewHolder
@@ -41,19 +48,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.categoryName.setText(categoryList.get(position).getCategoryName());
-        String picUrl = "category1";
-        holder.mainLayout.setBackground(ContextCompat
-                .getDrawable(holder.itemView.getContext(),
-                        R.drawable.category_background));
+        String baseUrl = "http://10.0.2.2:8080/img/category/";
+        String imageUrl = baseUrl + categoryList.get(position).getCategoryImg();
 
-        // getIdentifier(): Hàm này dùng để tìm ID của tài nguyên (resource) dựa vào tên, loại tài nguyên, và package của ứng dụng.
-        int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier
-                (picUrl, "drawable", holder.itemView.getContext().getPackageName());
-
-        // Sử dụng Glide để tải và hiển thị hình ảnh
         Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
+                .load(imageUrl)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // Bộ nhớ đệm cho ảnh
+                .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải (thay bằng ảnh của bạn)
                 .into(holder.categoryPic);
+
+        // gán sự kiện onclick cho từng category item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // GỌI VÀ TRUYỀN THAM SỐ
+                categoryClickListener.onCategoryClick(categoryList.get(position));
+            }
+        });
     }
 
     // kích thước của recycleView

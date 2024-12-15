@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
     android:layout_width="150dp"
     android:layout_height="wrap_content"
@@ -20,13 +21,13 @@
         app:srcCompat="@drawable/category1" />
 
     <TextView
-        android:ellipsize="end"
-        android:maxLines="1"
         android:id="@+id/categoryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="title"
         android:textColor="@color/main_color"
         android:textSize="16sp"

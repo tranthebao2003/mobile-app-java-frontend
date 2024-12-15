@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/newest_background"
+    android:elevation="3dp"
+    tools:elevation="5dp">
+
+    <ImageView
+        android:id="@+id/gameImgCartItem"
+        android:layout_width="0dp"
+        android:layout_height="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/category1" />
+
+    <TextView
+        android:id="@+id/gameNameCartItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="God of war"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/gameImgCartItem"
+        app:layout_constraintStart_toStartOf="@+id/gameImgCartItem"
+        app:layout_constraintTop_toBottomOf="@+id/gameImgCartItem" />
+
+    <TextView
+        android:id="@+id/gamePriceCartItem"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginTop="8dp"
+        android:text="100000"
+        android:textColor="@color/main_color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/gameNameCartItem"
+        app:layout_constraintStart_toStartOf="@+id/gameNameCartItem"
+        app:layout_constraintTop_toBottomOf="@+id/gameNameCartItem" />
+
+    <ImageView
+        android:id="@+id/btnRemoveCartItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/gamePriceCartItem"
+        app:layout_constraintStart_toStartOf="@+id/gamePriceCartItem"
+        app:layout_constraintTop_toBottomOf="@+id/gamePriceCartItem"
+        app:srcCompat="@drawable/close" />
+</androidx.constraintlayout.widget.ConstraintLayout>

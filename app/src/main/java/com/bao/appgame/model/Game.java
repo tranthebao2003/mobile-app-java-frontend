@@ -1,20 +1,28 @@
 package com.bao.appgame.model;
 
-import java.math.BigDecimal;
+import com.google.gson.annotations.SerializedName;
 
-public class Game {
+import java.io.Serializable;
+
+// bắt buộc phải có Serializable thì mới gửi qua
+// bằng intent được
+public class Game implements Serializable {
     private Long gameId;
     private String gameName;
     private String gameImg;
     private String description;
-    private double price;
 
-    public Game(Long gameId, String gameName, String gameImg, String description, double price) {
+    // vì thuộc tính model này là gamePrice khác với key của json trả về là price
+    // nên phải dùng thêm @SerializedName("keyOfJson")
+    @SerializedName("price")
+    private double gamePrice;
+
+    public Game(Long gameId, String gameName, String gameImg, String description, double gamePrice) {
         this.gameId = gameId;
         this.gameName = gameName;
         this.gameImg = gameImg;
         this.description = description;
-        this.price = price;
+        this.gamePrice = gamePrice;
     }
 
     public Long getGameId() {
@@ -33,7 +41,7 @@ public class Game {
         return description;
     }
 
-    public double getPrice() {
-        return price;
+    public double getGamePrice() {
+        return gamePrice;
     }
 }
