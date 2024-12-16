@@ -1,35 +1,82 @@
 package com.bao.appgame.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bao.appgame.R;
+import com.bao.appgame.api.DetailGameApi;
 import com.bao.appgame.model.CartManager;
 import com.bao.appgame.model.Game;
+import com.bao.appgame.response.ReviewScore;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class GameDetailActivity extends AppCompatActivity {
     TextView gameNameDetail, gamePriceDetail, gameDescriptionDetail;
-    TextView btnAddCartDetail, btnBuyNowDetail;
+    TextView btnAddCartDetail, btnBuyNowDetail, totalReview;
     ImageView gameImgDetail;
+    RatingBar ratingBarReviewDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_detail);
-
         initView();
+        getGameFromHome();
+    }
 
+    private Retrofit setupRetrofit(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/detailGame/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    private void callReviewScoreGame (Long gameId){
+        Retrofit retrofit = setupRetrofit();
+
+        DetailGameApi detailGameApi = retrofit.create(DetailGameApi.class);
+
+        Call<ReviewScore> reviewScoreCall = detailGameApi.getReviewScoreByGameId(gameId);
+
+        reviewScoreCall.enqueue(new Callback<ReviewScore>() {
+            @Override
+            public void onResponse(Call<ReviewScore> call, Response<ReviewScore> response) {
+
+                if (response.isSuccessful() && response.body() != null) {
+                    totalReview.setText(String.valueOf(response.body().getTotalReview() + " đánh giá"));
+                    ratingBarReviewDetail.setRating((float)response.body().getAverageScore());
+
+                    Log.d("ReviewScoreByGameId", "tìm kiếm thành công ");
+                } else {
+                    Log.e("API Error", "Mã lỗi: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReviewScore> call, Throwable t) {
+                Log.d("ErrorReviewScoreByGameId", "onFailure: " + t);
+            }
+        });
+    }
+
+    private void getGameFromHome(){
         // Nhận dữ liệu từ Intent của recyclerView newest
         Game game = (Game) getIntent().getSerializableExtra("game_object");
 
@@ -38,6 +85,7 @@ public class GameDetailActivity extends AppCompatActivity {
             gameNameDetail.setText(game.getGameName());
             gamePriceDetail.setText(String.valueOf(game.getGamePrice()).replace(".0", " Đ"));
             gameDescriptionDetail.setText(game.getDescription());
+            callReviewScoreGame(game.getGameId());
             loadImgGame(game.getGameImg());
             addCartDetail(game);
         }
@@ -79,6 +127,10 @@ public class GameDetailActivity extends AppCompatActivity {
         btnBuyNowDetail = findViewById(R.id.btnBuyNowDetail);
 
         gameImgDetail = findViewById(R.id.gameImgDetail);
+
+        // review
+        totalReview = findViewById(R.id.totalReviewDetail);
+        ratingBarReviewDetail = findViewById(R.id.ratingBarReviewDetail);
 
     }
 }

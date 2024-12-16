@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bao.appgame.activity.CartListActivity;
 import com.bao.appgame.model.CartManager;
 import com.bao.appgame.model.Game;
 import com.bao.appgame.R;
@@ -20,9 +21,11 @@ import java.util.List;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
     private List<Game> gameItem;
+    private CartListActivity.BtnRemoveCartItem btnRemoveCartItem;
 
-    public CartListAdapter(List<Game> gameItem) {
+    public CartListAdapter(List<Game> gameItem, CartListActivity.BtnRemoveCartItem btnRemoveCartItem) {
         this.gameItem = gameItem;
+        this.btnRemoveCartItem = btnRemoveCartItem;
     }
 
     @NonNull
@@ -40,10 +43,14 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
         String imageUrl = baseUrl + gameItem.get(position).getGameImg();
 
+        // phần này mình phải làm giống như btn category bởi vì sau khi xóa xong
+        // game trong cartManager thì mình phải call lại cartListAdapter này để
+        // hiển thị lại danh sách game trong giỏ hàng
         holder.btnRemoveCartItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CartManager.getInstance().removeItem(gameItem.get(position));
+                // truyền game id tại vị trí game cần xóa
+                btnRemoveCartItem.onRemoveCartItem(gameItem.get(position));
             }
         });
 

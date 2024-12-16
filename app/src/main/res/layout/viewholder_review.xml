@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/userNameDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Trần Thế Bảo"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/reviewStartUserDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="-50dp"
+        android:layout_marginTop="-6dp"
+        android:foregroundGravity="left"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:numStars="5"
+        android:padding="0dp"
+        android:progressTint="@color/main_color"
+        android:rating="3"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        app:layout_constraintStart_toStartOf="@+id/userNameDetail"
+        app:layout_constraintTop_toBottomOf="@+id/userNameDetail" />
+
+    <TextView
+        android:id="@+id/userReviewTxtDetail"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Game hay nhất mà tôi từng chơi, một trải nghiệm thú vị, hành trình đánh bại quân mông cổ giành lại độc lập cho Nhật Bản."
+        android:textColor="@color/text_color"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/userNameDetail"
+        app:layout_constraintTop_toBottomOf="@+id/reviewStartUserDetail" />
+</androidx.constraintlayout.widget.ConstraintLayout>

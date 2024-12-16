@@ -22,4 +22,5 @@ public interface GameApi {
 
     @GET("category/{categoryId}")
     Call<List<Game>> getGameByCategoryId(@Path("categoryId") Long categoryId);
+
 }

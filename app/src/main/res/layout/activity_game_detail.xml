@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_background"
-    tools:context=".Activity.ShowDetailActivity">
+    tools:context=".activity.GameDetailActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -39,7 +40,7 @@
                 android:paddingBottom="10dp"
                 android:text="God of war"
                 android:textColor="@color/main_color"
-                android:textSize="34sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -65,36 +66,71 @@
                 android:id="@+id/gameDescriptionDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:text="Game hành động nhập vai, phiêu lưueeeeee dddddddddd"
                 android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="240dp"
+            <!--    android:rating="3": hiển thị số sao
+        android:isIndicator="true": chỉ hiển thị ko thể click đc        -->
+            <TextView
+                android:id="@+id/totalReviewDetail"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end" />
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:text="5 lượt đánh giá"
+                android:textColor="@color/main_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!--
+Chỉnh màu sao chưa chọn (Unselected Stars):
+    Sử dụng android:backgroundTint để thay đổi màu của các ngôi sao chưa được chọn.
+Chỉnh màu sao trung gian (Intermediate Stars):
+    Sử dụng android:secondaryProgressTint cho phần trung gian của ngôi sao.
+-->
+
+            <RatingBar
+                android:id="@+id/ratingBarReviewDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="-2dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="@color/main_color"
+                android:rating="4"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:secondaryProgressTint="#02354D" />
 
             <TextView
                 android:id="@+id/border"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/border" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewReview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
 
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
-        android:clipToPadding="false"
-        android:gravity="center_horizontal|center_vertical"
-        android:orientation="vertical"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -102,22 +138,23 @@
         <TextView
             android:id="@+id/btnAddCartDetail"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_margin="16dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="30dp"
             android:layout_weight="1"
             android:background="@drawable/btn_background"
             android:elevation="3dp"
             android:gravity="center"
             android:text="Thêm vào giỏ hàng"
             android:textColor="@color/text_color"
-            android:textSize="25sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btnBuyNowDetail"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_margin="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
             android:layout_weight="1"
             android:background="@drawable/btn_background"
             android:elevation="3dp"

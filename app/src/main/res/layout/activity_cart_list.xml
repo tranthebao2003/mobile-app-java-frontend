@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:paddingBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +21,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -50,13 +49,15 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewCartItem"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:minHeight="350dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="bottom"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/header_home_background"
                 android:elevation="5dp"
@@ -122,7 +123,7 @@
                         android:contextClickable="false"
                         android:text="Tổng số tiền"
                         android:textColor="@color/text_color"
-                        android:textSize="28sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -131,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:text="0 Đ"
                         android:textColor="@color/text_color"
-                        android:textSize="28sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -141,6 +142,7 @@
                 android:id="@+id/btnCheckoutCart"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_gravity="bottom"
                 android:layout_margin="20dp"
                 android:background="@drawable/btn_background"
                 android:gravity="center"
@@ -269,18 +271,5 @@
             app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <TextView
-        android:id="@+id/emptyCartTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Giỏ hàng của bạn trống"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

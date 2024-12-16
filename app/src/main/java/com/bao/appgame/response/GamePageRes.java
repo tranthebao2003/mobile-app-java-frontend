@@ -6,13 +6,9 @@ import java.util.List;
 
 public class GamePageRes {
     private List<Game> gameList;
-    private int currentPage;
 
     public List<Game> getGameList() {
         return gameList;
     }
 
-    public int getCurrentPage() {
-        return currentPage;
-    }
 }
