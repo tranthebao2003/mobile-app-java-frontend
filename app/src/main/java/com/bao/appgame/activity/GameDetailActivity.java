@@ -26,10 +26,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GameDetailActivity extends AppCompatActivity {
-    TextView gameNameDetail, gamePriceDetail, gameDescriptionDetail;
-    TextView btnAddCartDetail, btnBuyNowDetail, totalReview;
-    ImageView gameImgDetail;
-    RatingBar ratingBarReviewDetail;
+    private TextView gameNameDetail, gamePriceDetail, gameDescriptionDetail;
+    private TextView btnAddCartDetail, btnBuyNowDetail, totalReview, totalInStock;
+    private ImageView gameImgDetail;
+    private RatingBar ratingBarReviewDetail;
+
+    // nhận từ response.body() dùng để check xem có click vào đc
+    // 2 btn add cart and thanh toán ngay không?
+    private int totalGameInStock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +64,12 @@ public class GameDetailActivity extends AppCompatActivity {
             public void onResponse(Call<ReviewScore> call, Response<ReviewScore> response) {
 
                 if (response.isSuccessful() && response.body() != null) {
-                    totalReview.setText(String.valueOf(response.body().getTotalReview() + " đánh giá"));
+                    totalReview.setText(response.body().getTotalReview() + " đánh giá");
+                    totalInStock.setText("Số tài khoản: " +response.body().totalGameInStock());
+
                     ratingBarReviewDetail.setRating((float)response.body().getAverageScore());
+
+                    totalGameInStock = response.body().totalGameInStock();
 
                     Log.d("ReviewScoreByGameId", "tìm kiếm thành công ");
                 } else {
@@ -88,17 +96,41 @@ public class GameDetailActivity extends AppCompatActivity {
             callReviewScoreGame(game.getGameId());
             loadImgGame(game.getGameImg());
             addCartDetail(game);
+
+            buyNowDetail(game);
         }
     }
+
+    private void buyNowDetail(Game game) {
+        btnBuyNowDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(totalGameInStock == 0){
+                    Toast.makeText(GameDetailActivity.this,
+                            "Hết hàng, xin lỗi vì sự bất tiện này !",
+                            Toast.LENGTH_SHORT).show();
+                } else{
+                   // Diệu Linh xử lí thanh toán ở đây nha ahihi
+                }
+            }
+        });
+    }
+
 
     private void addCartDetail(Game game){
         btnAddCartDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CartManager.getInstance().addItem(game);
-                Toast.makeText(GameDetailActivity.this,
-                        "Game đã được thêm thành công!",
-                        Toast.LENGTH_SHORT).show();
+                if(totalGameInStock == 0){
+                    Toast.makeText(GameDetailActivity.this,
+                            "Hết hàng, xin lỗi vì sự bất tiện này !",
+                            Toast.LENGTH_SHORT).show();
+                } else{
+                    CartManager.getInstance().addItem(game);
+                    Toast.makeText(GameDetailActivity.this,
+                            "Game đã được thêm thành công!",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -113,7 +145,6 @@ public class GameDetailActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // Bộ nhớ đệm cho ảnh
                 .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải (thay bằng ảnh của bạn)
                 .into(gameImgDetail);
-
     }
 
     private void initView() {
@@ -131,6 +162,6 @@ public class GameDetailActivity extends AppCompatActivity {
         // review
         totalReview = findViewById(R.id.totalReviewDetail);
         ratingBarReviewDetail = findViewById(R.id.ratingBarReviewDetail);
-
+        totalInStock = findViewById(R.id.totalInStock);
     }
 }

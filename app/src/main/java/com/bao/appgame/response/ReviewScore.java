@@ -2,7 +2,7 @@ package com.bao.appgame.response;
 
 public class ReviewScore {
     private double averageScore;
-    private int totalReview;
+    private int totalReview, totalGameInStock;
 
     public double getAverageScore() {
         return averageScore;
@@ -10,5 +10,9 @@ public class ReviewScore {
 
     public int getTotalReview() {
         return totalReview;
+    }
+
+    public int totalGameInStock() {
+        return totalGameInStock;
     }
 }
