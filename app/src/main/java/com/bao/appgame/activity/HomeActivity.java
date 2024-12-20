@@ -1,11 +1,13 @@
 package com.bao.appgame.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -110,12 +112,18 @@ public class HomeActivity extends AppCompatActivity {
         searchInputHome.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                InputMethodManager imm = (InputMethodManager) textView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
                 if(actionId == EditorInfo.IME_ACTION_DONE){
                     String inputText = textView.getText().toString();
 //                    Toast.makeText(HomeActivity.this, "searchInput " + inputText, Toast.LENGTH_SHORT).show();
                     callSearchGame(inputText);
+                    // Ẩn bàn phím bằng cách lấy InputMethodManager từ Context và gọi hàm hideSoftInputFromWindow.
+                    imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+
                     return true;
                 }
+
                 return false;
             }
         });
