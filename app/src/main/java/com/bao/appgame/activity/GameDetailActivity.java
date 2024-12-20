@@ -10,14 +10,23 @@ import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bao.appgame.R;
+import com.bao.appgame.adapter.NewestAdapter;
+import com.bao.appgame.adapter.ReviewCommentAdapter;
 import com.bao.appgame.api.DetailGameApi;
+import com.bao.appgame.api.ReviewCommentApi;
 import com.bao.appgame.model.CartManager;
 import com.bao.appgame.model.Game;
+import com.bao.appgame.response.ReviewCommentRes;
 import com.bao.appgame.response.ReviewScore;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +39,8 @@ public class GameDetailActivity extends AppCompatActivity {
     private TextView btnAddCartDetail, btnBuyNowDetail, totalReview, totalInStock;
     private ImageView gameImgDetail;
     private RatingBar ratingBarReviewDetail;
+    private RecyclerView recyclerViewReviewComment;
+    private RecyclerView.Adapter adapterReviewComment;
 
     // nhận từ response.body() dùng để check xem có click vào đc
     // 2 btn add cart and thanh toán ngay không?
@@ -50,6 +61,43 @@ public class GameDetailActivity extends AppCompatActivity {
                 .build();
 
         return retrofit;
+    }
+
+    private void callReviewComment(Game game){
+        Retrofit retrofit = setupRetrofit();
+
+        ReviewCommentApi reviewCommentApi = retrofit.create(ReviewCommentApi.class);
+
+        Call<List<ReviewCommentRes>> reviewCommentByGameId = reviewCommentApi.getReviewCommentByGameId(game.getGameId());
+
+        reviewCommentByGameId.enqueue(new Callback<List<ReviewCommentRes>>() {
+            @Override
+            public void onResponse(Call<List<ReviewCommentRes>> call, Response<List<ReviewCommentRes>> response) {
+
+                if (response.isSuccessful() && response.body() != null) {
+                    recyclerReviewComment(response.body());
+                    Log.d("ReviewCommentByGameId", "tìm kiếm thành công ");
+                } else {
+                    Log.e("API Error", "Mã lỗi: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ReviewCommentRes>> call, Throwable t) {
+                Log.d("ErrorReviewCommentByGameId", "onFailure: " + t);
+            }
+        });
+    }
+
+    private void recyclerReviewComment(List<ReviewCommentRes> reviewCommentResList){
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        recyclerViewReviewComment = findViewById(R.id.recyclerViewReviewComment);
+        recyclerViewReviewComment.setLayoutManager(linearLayoutManager);
+
+        adapterReviewComment = new ReviewCommentAdapter(reviewCommentResList);
+        recyclerViewReviewComment.setAdapter(adapterReviewComment);
     }
 
     private void callReviewScoreGame (Long gameId){
@@ -96,8 +144,8 @@ public class GameDetailActivity extends AppCompatActivity {
             callReviewScoreGame(game.getGameId());
             loadImgGame(game.getGameImg());
             addCartDetail(game);
-
             buyNowDetail(game);
+            callReviewComment(game);
         }
     }
 

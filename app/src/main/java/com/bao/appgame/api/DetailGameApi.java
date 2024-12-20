@@ -12,4 +12,5 @@ import retrofit2.http.Path;
 public interface DetailGameApi {
     @GET("game/{gameId}")
     Call<ReviewScore> getReviewScoreByGameId(@Path("gameId") Long gameId);
+
 }

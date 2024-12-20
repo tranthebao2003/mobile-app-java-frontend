@@ -137,7 +137,7 @@ Chỉnh màu sao trung gian (Intermediate Stars):
                 android:background="@drawable/border" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewReview"
+                android:id="@+id/recyclerViewReviewComment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
