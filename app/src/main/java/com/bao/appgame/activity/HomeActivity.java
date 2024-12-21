@@ -2,6 +2,7 @@ package com.bao.appgame.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -41,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnXemThem;
     private EditText searchInputHome;
     private int pageNo = 0;
+    private  TextView nameHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,12 @@ public class HomeActivity extends AppCompatActivity {
         callCategoryList();
         callGamePage(pageNo);
         searchGame();
+
+        //tên người dùng
+        nameHome = findViewById(R.id.fullNameTxt);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "defaultUsername");
+        nameHome.setText("Hi! "+username);
 
         btnXemThem = findViewById(R.id.btnXemThem);
         btnXemThem.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         // build retrofit và dùng GsonConverterFactory đế ảnh xạ json
         // vào entity và ngược lại
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/home/")
+                .baseUrl("http://192.168.5.136:8080/home/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

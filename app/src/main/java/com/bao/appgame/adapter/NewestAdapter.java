@@ -1,5 +1,6 @@
 package com.bao.appgame.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,11 +45,11 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestAdapter.ViewHolder
     // bind data vào những viewHolder, onBindViewHolder nó sẽ chạy từ vị trí
     // 0 đến categoryDomains.size() - 1
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.gameName.setText(newestGame.get(position).getGameName());
         holder.gamePrice.setText(String.valueOf(newestGame.get(position).getGamePrice()).replace(".0", " Đ"));
 
-        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
+        String baseUrl = "http://192.168.5.136:8080/uploadImgGame/";
         String imageUrl = baseUrl + newestGame.get(position).getGameImg();
 
 

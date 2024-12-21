@@ -1,5 +1,6 @@
 package com.bao.appgame.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     // bind data vào những viewHolder, onBindViewHolder nó sẽ chạy từ vị trí
     // 0 đến categoryDomains.size() - 1
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.categoryName.setText(categoryList.get(position).getCategoryName());
-        String baseUrl = "http://10.0.2.2:8080/img/category/";
+        String baseUrl = "http://192.168.5.136:8080/img/category/";
         String imageUrl = baseUrl + categoryList.get(position).getCategoryImg();
 
         Glide.with(holder.itemView.getContext())

@@ -1,5 +1,7 @@
 package com.bao.appgame.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,6 +35,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import com.bao.appgame.model.OrderInfo;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameDetailActivity extends AppCompatActivity {
     private TextView gameNameDetail, gamePriceDetail, gameDescriptionDetail;
@@ -158,12 +167,28 @@ public class GameDetailActivity extends AppCompatActivity {
                             "Hết hàng, xin lỗi vì sự bất tiện này !",
                             Toast.LENGTH_SHORT).show();
                 } else{
-                   // Diệu Linh xử lí thanh toán ở đây nha ahihi
+                    Intent intent = new Intent(GameDetailActivity.this, BuyActivity.class);
+                    SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                    String email = sharedPreferences.getString("email", "defaultEmail");
+
+                    OrderInfo orderInfo = new OrderInfo();
+                    orderInfo.setUserEmail(email);
+
+                    List<Long> listGameId = new ArrayList<>();
+                    listGameId.add(game.getGameId()); // Giả sử Game có phương thức getId()
+
+                    List<String> listGameName = new ArrayList<>();
+                    listGameName.add(game.getGameName());
+                    orderInfo.setGameId(listGameId);
+                    orderInfo.setGameName(listGameName);
+                    orderInfo.setSumprice(game.getGamePrice());
+
+                    intent.putExtra("orderInfo", orderInfo);
+                    startActivity(intent);
                 }
             }
         });
     }
-
 
     private void addCartDetail(Game game){
         btnAddCartDetail.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +209,7 @@ public class GameDetailActivity extends AppCompatActivity {
     }
 
     private void loadImgGame(String nameImg){
-        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
+        String baseUrl = "http://192.168.5.136:8080/uploadImgGame/";
         String imageUrl = baseUrl + nameImg;
 
 

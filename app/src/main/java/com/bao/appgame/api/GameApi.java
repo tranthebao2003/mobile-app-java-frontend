@@ -1,11 +1,16 @@
 package com.bao.appgame.api;
+import com.bao.appgame.model.AccountInfo;
 import com.bao.appgame.model.Game;
+import com.bao.appgame.model.OrderInfo;
 import com.bao.appgame.response.GamePageRes;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -23,4 +28,9 @@ public interface GameApi {
     @GET("category/{categoryId}")
     Call<List<Game>> getGameByCategoryId(@Path("categoryId") Long categoryId);
 
+<<<<<<< HEAD
+=======
+    @POST("/accountGameApi")
+    Call<List<AccountInfo>> getAccountInfo(@Body OrderInfo orderInfo);
+>>>>>>> dd0079dc3ad6d448d72ab8ef43ccd4a1620a0887
 }
