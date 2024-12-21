@@ -43,13 +43,16 @@ public class CartManager {
         }
 
         // tổng giá trong cart của all các game
-        public double getTotalPrice() {
+        public Double getTotalPrice() {
             double total = 0;
             for (Game game : cartItems) {
                 total += game.getGamePrice();
             }
             return total;
         }
+    public void clear() {
+        cartItems.clear(); // Xóa hết các phần tử trong danh sách cartItems
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.bao.appgame.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,8 +16,10 @@ import com.bao.appgame.R;
 import com.bao.appgame.adapter.CartListAdapter;
 import com.bao.appgame.model.CartManager;
 import com.bao.appgame.model.Game;
+import com.bao.appgame.model.OrderInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartListActivity extends AppCompatActivity {
@@ -24,6 +27,7 @@ public class CartListActivity extends AppCompatActivity {
     private CartListAdapter cartListAdapter;
     private RecyclerView recyclerViewCartItem;
     TextView totalItemTxtCart, totalPriceCart, btnCheckoutCart, emptyCartTxt;
+
 
     private ScrollView scrollViewCart;
 
@@ -37,6 +41,38 @@ public class CartListActivity extends AppCompatActivity {
 
         CalculateCart();
         bottomNavigation();
+        buyItem();
+    }
+
+    private void buyItem() {
+        btnCheckoutCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CartListActivity.this, BuyActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                String email = sharedPreferences.getString("email", "defaultEmail");
+
+                OrderInfo orderInfo = new OrderInfo();
+                orderInfo.setUserEmail(email);
+                List<Game> cartItem = CartManager.getInstance().getCartItems();
+
+                List<Long> listGameId = new ArrayList<>();
+                List<String> listGameName = new ArrayList<>();
+                for (Game gameId : cartItem) {
+                    listGameId.add(gameId.getGameId());
+                    listGameName.add(gameId.getGameName());
+                }
+
+                orderInfo.setGameId(listGameId);
+                orderInfo.setGameName(listGameName);
+                orderInfo.setSumprice(CartManager.getInstance().getTotalPrice());
+
+                intent.putExtra("orderInfo", orderInfo);
+                CartManager.getInstance().clear();
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void bottomNavigation(){
@@ -62,8 +98,7 @@ public class CartListActivity extends AppCompatActivity {
         recyclerViewCartItem = findViewById(R.id.recyclerViewCartItem);
         totalItemTxtCart = findViewById(R.id.totalItemTxtCart);
         totalPriceCart = findViewById(R.id.totalPriceCart);
-
-
+        btnCheckoutCart = findViewById(R.id.btnCheckoutCart);
         emptyCartTxt = findViewById(R.id.emptyCartTxt);
         scrollViewCart = findViewById(R.id.scrollViewCart);
     }

@@ -1,5 +1,6 @@
 package com.bao.appgame.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,11 +34,11 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.gameNameCartItem.setText(gameItem.get(position).getGameName());
         holder.gamePriceCartItem.setText(String.valueOf(gameItem.get(position).getGamePrice()).replace(".0", " Đ"));
 
-        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
+        String baseUrl = "http://192.168.5.136:8080/uploadImgGame/";
         String imageUrl = baseUrl + gameItem.get(position).getGameImg();
 
         holder.btnRemoveCartItem.setOnClickListener(new View.OnClickListener() {

@@ -57,12 +57,12 @@
         android:textColor="@color/text_color"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/btnRegister"
-        app:layout_constraintStart_toStartOf="@+id/btnRegister"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+        app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <EditText
-        android:id="@+id/usernameRegister"
+        android:id="@+id/usernameLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -72,7 +72,7 @@
         android:drawableStart="@drawable/user_login"
         android:elevation="5dp"
         android:ems="10"
-        android:hint="Tài khoản"
+        android:hint="Email"
         android:drawablePadding="8dp"
         android:inputType="text"
         android:paddingStart="15dp"
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <EditText
-        android:id="@+id/phoneRegister"
+        android:id="@+id/passwordLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -111,13 +111,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameRegister" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameLogin" />
 
     <TextView
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/input_background"
         android:gravity="center"
         android:paddingStart="40dp"
@@ -128,7 +128,22 @@
         android:textColor="@color/text_color"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/phoneRegister"
-        app:layout_constraintStart_toStartOf="@+id/phoneRegister"
-        app:layout_constraintTop_toBottomOf="@+id/phoneRegister" />
+        app:layout_constraintEnd_toEndOf="@+id/passwordLogin"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/passwordLogin"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+
+    <TextView
+        android:id="@+id/forgotpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Quên mật khẩu ?"
+        android:textColor="@color/text_color"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>
