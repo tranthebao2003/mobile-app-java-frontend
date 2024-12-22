@@ -1,12 +1,16 @@
 package com.bao.appgame.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -39,9 +43,11 @@ public class BuyActivity extends AppCompatActivity {
     ArrayList<ItemGameBuy> list;
     ItemBuyListAdapter adapter;
     ListView lv;
+    TextView btnHome;
     Retrofit retrofit;
     GameApi apiService;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,15 +57,29 @@ public class BuyActivity extends AppCompatActivity {
         setupRetrofit();
         ImageView imageView = findViewById(R.id.imageView9);
 
-// Tạo Animation di chuyển từ vị trí hiện tại sang vị trí mới
+        // Tạo Animation di chuyển từ vị trí hiện tại sang vị trí mới
         TranslateAnimation animation = new TranslateAnimation(0, 0, -70, 0);
         animation.setDuration(1000); // Thời gian chạy animation (ms)
         animation.setRepeatCount(Animation.INFINITE); // Lặp lại vô hạn
         animation.setRepeatMode(Animation.REVERSE); // Quay lại vị trí ban đầu
         imageView.startAnimation(animation);
+        btnHome = findViewById(R.id.btnBuytoHome);
+        order();
+        btnOut();
 
+    }
 
+    private void btnOut() {
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BuyActivity.this,HomeActivity.class));
+            }
+        });
+    }
 
+    private void order()
+    {
         OrderInfo orderInfo = (OrderInfo) getIntent().getSerializableExtra("orderInfo");
         int[] img = {R.drawable.game};  // Hoặc thêm hình ảnh tương ứng vào đây
 
@@ -85,13 +105,13 @@ public class BuyActivity extends AppCompatActivity {
                 }
             }
 
-        @Override
+            @Override
             public void onFailure(Call<List<AccountInfo>> call, Throwable t) {
                 // Xử lý lỗi kết nối hoặc lỗi API
                 Log.e("API Error", "Failure: " + t.getMessage());
             }
         });
-    };
+    }
 
     private void setupRetrofit() {
         // Cấu hình Retrofit

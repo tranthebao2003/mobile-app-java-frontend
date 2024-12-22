@@ -1,5 +1,6 @@
 package com.bao.appgame.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -8,13 +9,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.TextView;
 
+import com.bao.appgame.ListOrderActivity;
 import com.bao.appgame.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView userProfile, emailProfile, phoneProfile;
+    private TextView userProfile, emailProfile, phoneProfile, btnorder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +31,19 @@ public class ProfileActivity extends AppCompatActivity {
         userProfile.setText(username);
         emailProfile.setText(email);
         phoneProfile.setText(phone);
+
+        btnorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this, ListOrderActivity.class));
+            }
+        });
     }
 
     private void initView() {
         userProfile = findViewById(R.id.usernameProfile);
         emailProfile =findViewById(R.id.emailProfile);
         phoneProfile = findViewById(R.id.phoneProfile);
+        btnorder = findViewById(R.id.btnOrder);
     }
 }

@@ -18,7 +18,7 @@
         tools:layout_editor_absoluteY="-42dp">
 
         <TextView
-            android:id="@+id/btnCheckoutCart2"
+            android:id="@+id/btnBuytoHome"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
 
-            android:text="Thông tin đơn hàng"
+            android:text="Đặt hàng thành công !"
             android:textAlignment="center"
             android:textColor="@color/main_color"
             android:textSize="28sp"
@@ -64,7 +64,7 @@
         <ListView
             android:id="@+id/lvBuy"
             android:layout_width="320sp"
-            android:layout_height="300sp"
+            android:layout_height="320sp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="4dp"

@@ -1,6 +1,7 @@
 package com.bao.appgame.api;
 import com.bao.appgame.model.AccountInfo;
 import com.bao.appgame.model.Game;
+import com.bao.appgame.model.ItemOrderList;
 import com.bao.appgame.model.OrderInfo;
 import com.bao.appgame.response.GamePageRes;
 
@@ -28,9 +29,9 @@ public interface GameApi {
     @GET("category/{categoryId}")
     Call<List<Game>> getGameByCategoryId(@Path("categoryId") Long categoryId);
 
-<<<<<<< HEAD
-=======
     @POST("/accountGameApi")
     Call<List<AccountInfo>> getAccountInfo(@Body OrderInfo orderInfo);
->>>>>>> dd0079dc3ad6d448d72ab8ef43ccd4a1620a0887
+
+    @POST("/ordersApi/{emailUser}")
+    Call<List<ItemOrderList>> getUserOrders(@Path("emailUser") String emailUser);
 }

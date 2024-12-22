@@ -65,7 +65,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
     private Retrofit setupRetrofit(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/detailGame/")
+                .baseUrl("http://192.168.5.136:8080/detailGame/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -168,6 +168,7 @@ public class GameDetailActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else{
                     Intent intent = new Intent(GameDetailActivity.this, BuyActivity.class);
+
                     SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                     String email = sharedPreferences.getString("email", "defaultEmail");
 
