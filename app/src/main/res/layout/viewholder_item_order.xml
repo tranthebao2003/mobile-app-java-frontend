@@ -7,7 +7,8 @@
     android:layout_marginBottom="15sp"
     android:background="@drawable/item_buy"
     android:elevation="3dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_goneMarginBottom="20dp">
 
     <LinearLayout
         android:id="@+id/itembuy"

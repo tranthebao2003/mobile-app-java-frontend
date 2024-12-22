@@ -100,7 +100,7 @@
         android:elevation="5dp"
         android:ems="10"
         android:hint="Mật khẩu"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingStart="15dp"
         android:paddingTop="5dp"
         android:paddingEnd="15dp"

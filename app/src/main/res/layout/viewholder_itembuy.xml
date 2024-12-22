@@ -5,10 +5,11 @@
     android:id="@+id/itembuy"
     android:layout_width="350sp"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10sp"
+    android:layout_marginBottom="20dp"
     android:background="@drawable/item_buy"
     android:orientation="horizontal"
-    android:textAlignment="center">
+    android:textAlignment="center"
+    app:layout_goneMarginBottom="10dp">
 
     <ImageView
         android:id="@+id/imgItem"

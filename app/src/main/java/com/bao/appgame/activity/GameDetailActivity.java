@@ -65,7 +65,7 @@ public class GameDetailActivity extends AppCompatActivity {
 
     private Retrofit setupRetrofit(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.5.136:8080/detailGame/")
+                .baseUrl("http://10.0.2.2:8080/detailGame/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -210,7 +210,7 @@ public class GameDetailActivity extends AppCompatActivity {
     }
 
     private void loadImgGame(String nameImg){
-        String baseUrl = "http://192.168.5.136:8080/uploadImgGame/";
+        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
         String imageUrl = baseUrl + nameImg;
 
 
