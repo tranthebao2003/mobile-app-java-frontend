@@ -50,7 +50,7 @@
         android:drawablePadding="8dp"
         android:elevation="5dp"
         android:ems="10"
-        android:hint="Tài khoản"
+        android:hint="Tên tài khoản"
         android:inputType="text"
         android:paddingStart="15dp"
         android:paddingTop="5dp"

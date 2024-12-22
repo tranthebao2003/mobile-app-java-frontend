@@ -13,14 +13,14 @@
 
 <!-- maxLines: số dòng tối đa, ellipsize Thêm dấu "..." ở cuối văn bản khi nội dung bị cắt.-->
     <TextView
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:ellipsize="end"
-        android:maxLines="1"
         android:id="@+id/gameNameNewest"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:text="God of war"
         android:textAlignment="center"
         android:textColor="@color/main_color"
