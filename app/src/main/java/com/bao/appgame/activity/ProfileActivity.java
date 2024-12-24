@@ -3,21 +3,17 @@ package com.bao.appgame.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bao.appgame.ListOrderActivity;
 import com.bao.appgame.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView userProfile, emailProfile, phoneProfile, btnorder;
+    private TextView userProfile, emailProfile, phoneProfile, btnorder, btnlogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +34,16 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, ListOrderActivity.class));
             }
         });
+        btnlogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     private void initView() {
@@ -45,5 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
         emailProfile =findViewById(R.id.emailProfile);
         phoneProfile = findViewById(R.id.phoneProfile);
         btnorder = findViewById(R.id.btnOrder);
+        btnlogout = findViewById(R.id.btnLogout);
     }
 }

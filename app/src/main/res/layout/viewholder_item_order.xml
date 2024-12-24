@@ -2,36 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="350sp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="15sp"
-    android:background="@drawable/item_buy"
+    android:layout_marginLeft="10sp"
+    android:layout_marginTop="10sp"
+    android:layout_marginRight="10sp"
     android:elevation="3dp"
     android:orientation="vertical"
     app:layout_goneMarginBottom="20dp">
 
     <LinearLayout
         android:id="@+id/itembuy"
-        android:layout_width="320sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
+        android:layout_margin="5sp"
+        android:background="@drawable/item_buy"
         android:orientation="horizontal"
         android:textAlignment="center">
 
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10sp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/itemName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Game name"
-                android:textAlignment="viewStart"
-                android:textColor="@color/main_color"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/itemName2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Game name"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/main_color"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/review"
+                    android:layout_width="50sp"
+                    android:layout_height="30sp"
+                    app:srcCompat="@drawable/review" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,9 +59,8 @@
 
                 <TextView
                     android:id="@+id/account"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Account"
                     android:textAlignment="textStart"
                     android:textColor="@color/main_color"
@@ -53,9 +68,8 @@
 
                 <TextView
                     android:id="@+id/pass"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100sp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="pass word"
                     android:textAlignment="textStart"
                     android:textColor="@color/main_color"
@@ -65,9 +79,7 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20sp"
-                    android:layout_weight="1"
-                    android:text="pass word"
+                    android:text="price"
                     android:textAlignment="textEnd"
                     android:textColor="@color/main_color"
                     android:textSize="14sp"

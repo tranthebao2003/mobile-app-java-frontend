@@ -23,15 +23,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RegisterActivity extends AppCompatActivity {
     private EditText usernameRegister, passwordRegister, phoneRegister, emailRegister;
     private TextView btnRegister;
-    private Retrofit retrofit; // Retrofit instance
-    private LoginApi apiService; // API interface
+    private Retrofit retrofit;
+    private LoginApi apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initView();
-        setupRetrofit(); // Cấu hình Retrofit
+        setupRetrofit();
         setBtnListeners();
 
     }
@@ -46,10 +46,10 @@ public class RegisterActivity extends AppCompatActivity {
     private void setupRetrofit() {
         // Cấu hình Retrofit
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/") // URL backend
-                .addConverterFactory(GsonConverterFactory.create()) // Sử dụng Gson để parse JSON
+                .baseUrl("http://192.168.5.136:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        apiService = retrofit.create(LoginApi.class); // Khởi tạo API interface
+        apiService = retrofit.create(LoginApi.class);
     }
     private void setBtnListeners() {
             btnRegister.setOnClickListener(new View.OnClickListener() {
