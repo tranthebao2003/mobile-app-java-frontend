@@ -74,6 +74,14 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Vui lòng nhập đủ thông tin",Toast.LENGTH_SHORT).show();
             return;
         }
+        if(phone.length() != 10){
+            Toast.makeText(this, "Số điện thoại không hợp lệ",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //tạo đối tượng
         UserResponse userResponse = new UserResponse(username,email,password,phone,true);

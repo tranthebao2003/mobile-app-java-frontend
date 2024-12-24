@@ -77,7 +77,9 @@ public class ReviewActivity extends AppCompatActivity {
                             rating.setRating(0);
                             comment.setText("");
                         }
-
+                        else{
+                            Toast.makeText(ReviewActivity.this,"Gửi đánh giá thất bại",Toast.LENGTH_SHORT).show();
+                        }
 
                     }
 

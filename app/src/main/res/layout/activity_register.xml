@@ -160,4 +160,5 @@
         app:layout_constraintEnd_toEndOf="@+id/phoneRegister"
         app:layout_constraintStart_toStartOf="@+id/phoneRegister"
         app:layout_constraintTop_toBottomOf="@+id/passwordRegister" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

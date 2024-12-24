@@ -91,6 +91,11 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Tạo request object
         UserRequest userRequest = new UserRequest(email, password);
 

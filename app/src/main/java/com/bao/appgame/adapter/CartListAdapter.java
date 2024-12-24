@@ -56,7 +56,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // Bộ nhớ đệm cho ảnh
-                .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải (thay bằng ảnh của bạn)
+                .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải
                 .into(holder.imgCartItem);
 
     }

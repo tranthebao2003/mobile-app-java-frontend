@@ -53,7 +53,7 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestAdapter.ViewHolder
         Glide.with(holder.itemView.getContext())
                 .load(imageUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // Bộ nhớ đệm cho ảnh
-                .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải (thay bằng ảnh của bạn)
+                .placeholder(R.drawable.loading_img) // Ảnh hiển thị khi đang tải
                 .into(holder.gameImg);
 
 //      add btn

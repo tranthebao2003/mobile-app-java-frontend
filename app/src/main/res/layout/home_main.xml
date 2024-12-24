@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
+                    android:paddingRight="30dp"
                     android:text="Hi The Bao"
                     android:textColor="@color/main_color"
                     android:textSize="20sp"
