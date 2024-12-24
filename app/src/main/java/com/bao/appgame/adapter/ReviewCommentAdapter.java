@@ -15,7 +15,6 @@ import com.bao.appgame.response.ReviewCommentRes;
 
 import java.util.List;
 
-//CHƯA LÀM
 public class ReviewCommentAdapter extends RecyclerView.Adapter<ReviewCommentAdapter.ViewHolder> {
     private List<ReviewCommentRes> reviewCommentRes;
 

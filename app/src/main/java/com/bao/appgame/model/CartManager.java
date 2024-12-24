@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartManager {
+        // static này là để nó có thể sử dụng trong getInstance
         private static CartManager instance; // Singleton instance
         private List<Game> cartItems = new ArrayList<>(); // Danh sách game trong giỏ hàng
 

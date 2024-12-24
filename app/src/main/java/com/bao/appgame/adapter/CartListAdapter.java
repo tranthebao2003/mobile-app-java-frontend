@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bao.appgame.activity.CartListActivity;
-import com.bao.appgame.model.CartManager;
 import com.bao.appgame.model.Game;
 import com.bao.appgame.R;
 import com.bumptech.glide.Glide;

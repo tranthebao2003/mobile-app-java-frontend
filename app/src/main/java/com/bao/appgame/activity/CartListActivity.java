@@ -15,11 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bao.appgame.R;
 import com.bao.appgame.adapter.CartListAdapter;
-import com.bao.appgame.api.DetailGameApi;
-import com.bao.appgame.api.GameApi;
 import com.bao.appgame.model.CartManager;
 import com.bao.appgame.model.Game;
-import com.bao.appgame.response.ReviewScore;
 
 import com.bao.appgame.model.OrderInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,11 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CartListActivity extends AppCompatActivity {
 
@@ -53,6 +45,7 @@ public class CartListActivity extends AppCompatActivity {
         buyItem();
     }
 
+    // Diệu Linh
     private void buyItem() {
         btnCheckoutCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +115,8 @@ public class CartListActivity extends AppCompatActivity {
     }
 
     private void initList(){
+        // lấy danh sách game trong cart
         List<Game> cartItem = CartManager.getInstance().getCartItems();
-
-        // Hiển thị tổng số lượng và giá tiền
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
