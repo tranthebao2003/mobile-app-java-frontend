@@ -43,7 +43,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/done" />
+            app:srcCompat="@drawable/done_order" />
 
         <TextView
             android:id="@+id/textView12"
@@ -63,6 +63,7 @@
 
         <ListView
             android:id="@+id/lvBuy"
+            android:divider="@android:color/transparent"
             android:layout_width="320sp"
             android:layout_height="320sp"
             android:layout_marginStart="4dp"

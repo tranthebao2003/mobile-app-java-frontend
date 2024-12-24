@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/header_home_background"
+    android:orientation="vertical"
+    tools:context=".activity.ReviewActivity">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="150sp"
+        android:layout_marginTop="50sp"
+        app:srcCompat="@drawable/review" />
+
+    <TextView
+        android:id="@+id/gameNameReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginRight="15sp"
+        android:layout_marginBottom="30sp"
+        android:gravity="center_horizontal"
+        android:text="game name"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/ratingGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30sp"
+        android:numStars="5"
+        android:progressTint="@color/main_color"
+        android:stepSize="1"
+        />
+
+    <EditText
+        android:id="@+id/txtReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginRight="15sp"
+        android:background="@drawable/input_background"
+        android:ems="10"
+        android:hint="Viết đánh giá tại đây!"
+        android:padding="10sp"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/main_color"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/btnReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/input_background"
+        android:gravity="center"
+        android:paddingStart="40dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="40dp"
+        android:paddingBottom="15dp"
+        android:text="Đánh giá"
+        android:textColor="@color/text_color"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
