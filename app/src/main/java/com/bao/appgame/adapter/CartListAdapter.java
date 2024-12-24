@@ -40,7 +40,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         holder.gameNameCartItem.setText(gameItem.get(position).getGameName());
         holder.gamePriceCartItem.setText(String.valueOf(gameItem.get(position).getGamePrice()).replace(".0", " Đ"));
 
-        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
+        String baseUrl = "http://192.168.5.136:8080/uploadImgGame/";
         String imageUrl = baseUrl + gameItem.get(position).getGameImg();
 
         // phần này mình phải làm giống như btn category bởi vì sau khi xóa xong

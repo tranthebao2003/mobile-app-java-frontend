@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         // build retrofit và dùng GsonConverterFactory đế ảnh xạ json
         // vào entity và ngược lại
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/home/")
+                .baseUrl("http://192.168.5.136:8080/home/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

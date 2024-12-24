@@ -57,11 +57,10 @@ public class BuyActivity extends AppCompatActivity {
         setupRetrofit();
         ImageView imageView = findViewById(R.id.imageView9);
 
-        // Tạo Animation di chuyển từ vị trí hiện tại sang vị trí mới
         TranslateAnimation animation = new TranslateAnimation(0, 0, -70, 0);
-        animation.setDuration(1000); // Thời gian chạy animation (ms)
-        animation.setRepeatCount(Animation.INFINITE); // Lặp lại vô hạn
-        animation.setRepeatMode(Animation.REVERSE); // Quay lại vị trí ban đầu
+        animation.setDuration(1000);
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.REVERSE);
         imageView.startAnimation(animation);
         btnHome = findViewById(R.id.btnBuytoHome);
         order();
@@ -81,9 +80,9 @@ public class BuyActivity extends AppCompatActivity {
     private void order()
     {
         OrderInfo orderInfo = (OrderInfo) getIntent().getSerializableExtra("orderInfo");
-        int[] img = {R.drawable.game};  // Hoặc thêm hình ảnh tương ứng vào đây
+        int[] img = {R.drawable.game};
 
-        List<String> gamename = orderInfo.getGameName();  // Lấy danh sách tên game từ OrderInfo
+        List<String> gamename = orderInfo.getGameName();
 
         apiService.getAccountInfo(orderInfo).enqueue(new Callback<List<AccountInfo>>() {
             @Override
@@ -97,7 +96,7 @@ public class BuyActivity extends AppCompatActivity {
                         String account = accountInfo.getAccount();  // Lấy tài khoản
                         String pass = accountInfo.getPassword();  // Lấy mật khẩu
 
-                        // Thêm ItemGameBuy vào danh sách
+
                         list.add(new ItemGameBuy(img[0], gamename.get(i), account, pass));
                     }
                     adapter = new ItemBuyListAdapter(BuyActivity.this, R.layout.viewholder_itembuy, list);
@@ -107,8 +106,8 @@ public class BuyActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<AccountInfo>> call, Throwable t) {
-                // Xử lý lỗi kết nối hoặc lỗi API
-                Log.e("API Error", "Failure: " + t.getMessage());
+
+                Toast.makeText(BuyActivity.this,"Lỗi gọi dữ liệu",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -116,7 +115,7 @@ public class BuyActivity extends AppCompatActivity {
     private void setupRetrofit() {
         // Cấu hình Retrofit
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/") // URL backend
+                .baseUrl("http://192.168.5.136:8080/") // URL backend
                 .addConverterFactory(GsonConverterFactory.create()) // Sử dụng Gson để parse JSON
                 .build();
         apiService = retrofit.create(GameApi.class); // Khởi tạo API interface
