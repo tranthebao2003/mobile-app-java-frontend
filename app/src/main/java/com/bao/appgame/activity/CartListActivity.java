@@ -31,8 +31,6 @@ public class CartListActivity extends AppCompatActivity {
     private RecyclerView recyclerViewCartItem;
     TextView totalItemTxtCart, totalPriceCart, btnCheckoutCart;
 
-    private ScrollView scrollViewCart;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +82,7 @@ public class CartListActivity extends AppCompatActivity {
     private void bottomNavigation(){
         FloatingActionButton floatingActionButton = findViewById(R.id.cartBtn);
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +95,13 @@ public class CartListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CartListActivity.this, HomeActivity.class));
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CartListActivity.this, ProfileActivity.class));
             }
         });
     }
