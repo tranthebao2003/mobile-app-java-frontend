@@ -49,7 +49,7 @@ public class NewestAdapter extends RecyclerView.Adapter<NewestAdapter.ViewHolder
         holder.gameName.setText(newestGame.get(position).getGameName());
         holder.gamePrice.setText(String.valueOf(newestGame.get(position).getGamePrice()).replace(".0", " Đ"));
 
-        String baseUrl = "http://10.0.2.2:8080/uploadImgGame/";
+        String baseUrl = "http://192.168.5.136:8080/uploadImgGame/";
         String imageUrl = baseUrl + newestGame.get(position).getGameImg();
 
 

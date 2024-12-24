@@ -49,7 +49,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.categoryName.setText(categoryList.get(position).getCategoryName());
-        String baseUrl = "http://10.0.2.2:8080/img/category/";
+        String baseUrl = "http://192.168.5.136:8080/img/category/";
         String imageUrl = baseUrl + categoryList.get(position).getCategoryImg();
 
         Glide.with(holder.itemView.getContext())

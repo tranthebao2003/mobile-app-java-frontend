@@ -115,7 +115,7 @@ public class BuyActivity extends AppCompatActivity {
     private void setupRetrofit() {
         // Cấu hình Retrofit
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/") // URL backend
+                .baseUrl("http://192.168.5.136:8080/") // URL backend
                 .addConverterFactory(GsonConverterFactory.create()) // Sử dụng Gson để parse JSON
                 .build();
         apiService = retrofit.create(GameApi.class); // Khởi tạo API interface

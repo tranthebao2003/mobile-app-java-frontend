@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //check data
         if (email.isEmpty() || password.isEmpty() || username.isEmpty() || phone.isEmpty()) {
-            Toast.makeText(this, "nhập đủ thông tin",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Vui lòng nhập đủ thông tin",Toast.LENGTH_SHORT).show();
             return;
         }
 
