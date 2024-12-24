@@ -1,4 +1,4 @@
-package com.bao.appgame;
+package com.bao.appgame.activity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,19 +9,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.bao.appgame.activity.BuyActivity;
-import com.bao.appgame.adapter.ItemBuyListAdapter;
+import com.bao.appgame.R;
 import com.bao.appgame.adapter.ListOrderAdapter;
 import com.bao.appgame.api.GameApi;
-import com.bao.appgame.model.AccountInfo;
-import com.bao.appgame.model.ItemGameBuy;
 import com.bao.appgame.model.ItemOrderList;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +29,6 @@ public class ListOrderActivity extends AppCompatActivity {
     ArrayList<ItemOrderList> list;
     ListOrderAdapter adapter;
     ListView lv;
-    TextView btnHome;
     Retrofit retrofit;
     GameApi apiService;
     @Override
@@ -72,7 +64,6 @@ public class ListOrderActivity extends AppCompatActivity {
                     lv.setAdapter(adapter);
                 }
             }
-
                 @Override
                 public void onFailure (Call < List < ItemOrderList >> call, Throwable t){
                     Log.e("API_ERROR", "API call failed: " + t.getMessage());

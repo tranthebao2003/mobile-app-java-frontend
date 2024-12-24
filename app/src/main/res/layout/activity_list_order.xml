@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/header_home_background"
     android:padding="15sp"
-    tools:context=".ListOrderActivity">
+    tools:context=".activity.ListOrderActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -25,7 +25,7 @@
             android:id="@+id/imageView6"
             android:layout_width="75dp"
             android:layout_height="73dp"
-            app:srcCompat="@drawable/ordericon" />
+            app:srcCompat="@drawable/order" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +42,8 @@
     <ListView
         android:id="@+id/lvorder"
         android:layout_width="320sp"
-        android:layout_height="500dp"
+        android:divider="@android:color/transparent"
+        android:layout_height="530dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="1dp"
