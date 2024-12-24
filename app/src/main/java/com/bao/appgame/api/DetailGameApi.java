@@ -1,9 +1,6 @@
 package com.bao.appgame.api;
 
-import com.bao.appgame.model.Game;
 import com.bao.appgame.response.ReviewScore;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

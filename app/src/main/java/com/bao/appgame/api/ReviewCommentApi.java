@@ -2,7 +2,7 @@ package com.bao.appgame.api;
 
 import com.bao.appgame.model.ReviewRequest;
 import com.bao.appgame.response.ReviewCommentRes;
-import com.bao.appgame.response.ReviewScore;
+
 
 import java.util.List;
 

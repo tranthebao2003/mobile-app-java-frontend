@@ -37,11 +37,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.bao.appgame.model.OrderInfo;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameDetailActivity extends AppCompatActivity {
     private TextView gameNameDetail, gamePriceDetail, gameDescriptionDetail;
@@ -70,6 +67,23 @@ public class GameDetailActivity extends AppCompatActivity {
                 .build();
 
         return retrofit;
+    }
+
+    private void getGameFromHome(){
+        // Nhận dữ liệu từ Intent của recyclerView newest
+        Game game = (Game) getIntent().getSerializableExtra("game_object");
+
+        // Hiển thị dữ liệu và btn add to cart có tác dụng nếu game này khác null
+        if (game != null) {
+            gameNameDetail.setText(game.getGameName());
+            gamePriceDetail.setText(String.valueOf(game.getGamePrice()).replace(".0", " Đ"));
+            gameDescriptionDetail.setText(game.getDescription());
+            callReviewScoreGame(game.getGameId());
+            loadImgGame(game.getGameImg());
+            addCartDetail(game);
+            buyNowDetail(game);
+            callReviewComment(game);
+        }
     }
 
     private void callReviewComment(Game game){
@@ -139,23 +153,6 @@ public class GameDetailActivity extends AppCompatActivity {
                 Log.d("ErrorReviewScoreByGameId", "onFailure: " + t);
             }
         });
-    }
-
-    private void getGameFromHome(){
-        // Nhận dữ liệu từ Intent của recyclerView newest
-        Game game = (Game) getIntent().getSerializableExtra("game_object");
-
-        // Hiển thị dữ liệu và btn add to cart có tác dụng nếu game này khác null
-        if (game != null) {
-            gameNameDetail.setText(game.getGameName());
-            gamePriceDetail.setText(String.valueOf(game.getGamePrice()).replace(".0", " Đ"));
-            gameDescriptionDetail.setText(game.getDescription());
-            callReviewScoreGame(game.getGameId());
-            loadImgGame(game.getGameImg());
-            addCartDetail(game);
-            buyNowDetail(game);
-            callReviewComment(game);
-        }
     }
 
     private void buyNowDetail(Game game) {

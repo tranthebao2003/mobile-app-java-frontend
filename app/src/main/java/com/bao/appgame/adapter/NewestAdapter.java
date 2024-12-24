@@ -2,7 +2,6 @@ package com.bao.appgame.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bao.appgame.R;
@@ -20,7 +18,6 @@ import com.bao.appgame.model.Game;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewestAdapter extends RecyclerView.Adapter<NewestAdapter.ViewHolder> {

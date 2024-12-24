@@ -2,9 +2,7 @@ package com.bao.appgame.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -15,17 +13,11 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.bao.appgame.R;
 import com.bao.appgame.adapter.ItemBuyListAdapter;
 import com.bao.appgame.api.GameApi;
-import com.bao.appgame.api.LoginApi;
 import com.bao.appgame.model.AccountInfo;
-import com.bao.appgame.model.CartManager;
-import com.bao.appgame.model.Game;
 import com.bao.appgame.model.ItemGameBuy;
 import com.bao.appgame.model.OrderInfo;
 

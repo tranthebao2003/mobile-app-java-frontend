@@ -104,14 +104,13 @@ public class CartListActivity extends AppCompatActivity {
         recyclerViewCartItem = findViewById(R.id.recyclerViewCartItem);
         totalItemTxtCart = findViewById(R.id.totalItemTxtCart);
         totalPriceCart = findViewById(R.id.totalPriceCart);
+        btnCheckoutCart = findViewById(R.id.btnCheckoutCart);
     }
 
     private void setupAdapter(){
         totalItemTxtCart.setText(String.valueOf(CartManager.getInstance().getTotalItems()));
         totalPriceCart.setText(String.valueOf(CartManager.getInstance().getTotalPrice()).replace(".0", " Đ"));
         recyclerViewCartItem.setAdapter(cartListAdapter);
-        btnCheckoutCart = findViewById(R.id.btnCheckoutCart);
-
     }
 
     private void initList(){
